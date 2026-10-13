@@ -7,7 +7,7 @@ class Quantity:
         return Quantity(self.amount * multiplier, self.unit)
 
     def plus(self, other):
-        return grams(500)
+        return Sum(self, other)
 
     def __eq__(self, other):
         return self.amount == other.amount and self.unit == other.unit
@@ -27,3 +27,9 @@ def ounces(amount):
 class Converter:
     def reduce(self, source, unit):
         return source
+
+
+class Sum:
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
