@@ -6,6 +6,7 @@
 # [x] 200 g + 300 g = 500 g
 # [x] 200 g + 1 oz, reduced to grams, using a conversion rate
 # [ ] (200 g + 1 oz) * 2
+# [x] 2 oz reduced to grams = 56 g
 # [ ] Hashing quantities for sets or dictionary keys (deferred)
 
 from kitchen import Quantity, grams, ounces, Converter
@@ -47,3 +48,9 @@ def test_mixed_addition():
     converter.add_rate("oz", "g", 28)
     total = grams(200).plus(ounces(1))
     assert converter.reduce(total, "g") == grams(228)
+
+
+def test_ounces_to_grams_conversion_direction():
+    converter = Converter()
+    converter.add_rate("oz", "g", 28)
+    assert converter.reduce(ounces(2), "g") == grams(56)
